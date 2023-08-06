@@ -61,7 +61,19 @@ Producer: Accounting
 Consumers: Accounting
 ```
 
-- Accounting.BalanceChanged
+- Accounting.MoneyWithdrawn
+
+```
+balance_id: string
+amount: number
+```
+
+```
+Producer: Accounting
+Consumers: Accounting
+```
+
+- Accounting.MoneyDeposited
 
 ```
 balance_id: string

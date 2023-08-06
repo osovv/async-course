@@ -82,16 +82,7 @@ _A Constraint_
 
 Each employee should have an account that shows how much money they have received today.
 
-Showing is a _A Read Model_
-
-Also, there is a Command
-
-```
-Actor: Task.Assigned + Task.Completed
-Command: Change Balance
-Data: Task Public Id + Task Costs
-Event: Accounting.BalanceChanged
-```
+_A Read Model_
 
 ---
 
@@ -111,21 +102,28 @@ Event: Accounting.PricesSet (not used)
 ```
 
 ```
-Actor: Tasks.Assigned, Tasks.Completed
-Command: Charge Money
+Actor: Tasks.Assigned
+Command: Withdraw Money
 Data: Task + Account Public Id
-Event: Accounting.BalanceChanged
+Event: Accounting.MoneyWithdrawn
+```
+
+```
+Actor: Task.Completed
+Command: Deposit Money
+Data: Task + Account Public Id
+Event: Accounting.MoneyDeposited
 ```
 
 ---
 
-The account should have an audit log of what the money was charged or credited for, with a detailed description of each task.
+The account should have an audit log of what the money was withdrawn or deposited for, with a detailed description of each task.
 
 ```
-Actor: Accounting.BalanceChanged
-Command: Audit Balance Change
-Data: Account + Balance Change
-Event: Accounting.ChangeAudited
+Actor: Accounting.MoneyWithdrawn, Accounting.MoneyDeposited
+Command: Audit Balance Operation
+Data: Account + Money Amount
+Event: Accounting.OperationAudited
 ```
 
 ---
@@ -212,11 +210,11 @@ Format: `C: <Command Name> -> E: <Event Name> -> ...`
 
 ### Task Assignment
 
-`C: Create Task / C: Assign Task -> E: Tasks.Assigned -> C: Charge Money -> E: Accounting.BalanceChanged -> E: Accounting.ChangeAudited`
+`C: Create Task / C: Assign Task -> E: Tasks.Assigned -> C: Withdraw Money -> E: Accounting.MoneyWithdrawn -> C: Audit Balance Operation -> E: Accounting.OperationAudited`
 
 ### Task Completion
 
-`C: Complete Task -> E: Tasks.Completed -> C: Charge Money -> E: Accounting.BalanceChanged -> E: Accounting.ChangeAudited`
+`C: Complete Task -> E: Tasks.Completed -> C: Deposit Money -> E: Accounting.MoneyDeposited -> C: Audit Balance Operation -> E: Accounting.OperationAudited`
 
 ### Closing a Day
 
