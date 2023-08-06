@@ -171,7 +171,7 @@ Event: Accounting.BalanceReset
 Actor: Accounting.BalanceReset
 Command: Audit Balance Reset
 Data: Account
-Event: Accounting.BalanceResetAudited
+Event: Accounting.ResetAudited
 ```
 
 ---
@@ -220,6 +220,6 @@ Format: `C: <Command Name> -> E: <Event Name> -> ...`
 
 ### Closing a Day
 
-`C: Close Billing Period -> E: Accounting.PeriodClosed -> E: Accounting.BillSent`
+`C: Close Billing Period -> E: Accounting.PeriodClosed -> C: Accounting.SendBill -> E: Accounting.BillSent`
 
-`C: Close Billing Period -> E: Accounting.PeriodClosed -> E: Accounting.BalanceReset -> C: Audit Balance Reset -> E: Accounting.BalanceResetAudited`
+`C: Close Billing Period -> E: Accounting.PeriodClosed -> C: Accounting.ResetBalance -> E: Accounting.BalanceReset -> C: Audit Balance Reset -> E: Accounting.ResetAudited`
