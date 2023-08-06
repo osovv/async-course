@@ -5,57 +5,83 @@
 - Users.RoleChanged:
 
 ```
-  Producer: Auth Service
-  Consumers: Task Tracker, Accounting, Analytics
+user_id: string
+role: enum
+
+```
+
+```
+Producer: Auth Service
+Consumers: Task Tracker, Accounting, Analytics
 ```
 
 - Task.Created
 
 ```
-  Producer: Task Tracker
-  Consumers: Accounting, Analytics
+creator_id: string
+description: string
+```
+
+```
+Producer: Task Tracker
+Consumers: Accounting, Analytics
 ```
 
 - Tasks.Assigned
 
 ```
-  Producer: Task Tracker
-  Consumers: Accounting, Analytics
+assignee_id: string
+```
+
+```
+Producer: Task Tracker
+Consumers: Accounting, Analytics
 ```
 
 - Tasks.Completed
 
 ```
-  Producer: Task Tracker
-  Consumers: Accounting, Analytics
+assignee_id: string
+```
+
+```
+Producer: Task Tracker
+Consumers: Accounting, Analytics
 ```
 
 - Accounting.PeriodClosed
 
 ```
-  Producer: Accounting
-  Consumers: Accounting
+date_from: Timestamp with TZ
+date_to: Timestamp with TZ
+```
+
+```
+Producer: Accounting
+Consumers: Accounting
 ```
 
 - Accounting.BalanceChanged
 
 ```
-  Producer: Accounting
-  Consumers: Accounting
+balance_id: string
+amount: number
+```
+
+```
+Producer: Accounting
+Consumers: Accounting
 ```
 
 - Accounting.BalanceReset
 
 ```
-  Producer: Accounting
-  Consumers: Accounting
+balance_id: string
 ```
 
-- Accounting.ChangeAudited
-
 ```
-  Producer: Accounting
-  Consumers: Accounting
+Producer: Accounting
+Consumers: Accounting
 ```
 
 ## CUD Events
@@ -63,41 +89,71 @@
 - Users.Created
 
 ```
-  Producer: Auth Service
-  Consumers: Task Tracker, Accounting, Analytics
+user_id: string
+role: string
+name: string
+email: string
+```
+
+```
+Producer: Auth Service
+Consumers: Task Tracker, Accounting, Analytics
 ```
 
 - Users.LoggedIn
 
 ```
-  Producer: Auth Service
-  Consumers: Task Tracker, Accounting, Analytics
+user_id: string
+```
+
+```
+Producer: Auth Service
+Consumers: Task Tracker, Accounting, Analytics
 ```
 
 - Users.LoggedOut
 
 ```
-  Producer: Auth Service
-  Consumers: Task Tracker, Accounting, Analytics
+user_id: string
+```
+
+```
+Producer: Auth Service
+Consumers: Task Tracker, Accounting, Analytics
 ```
 
 - Accounting.PricesSet
 
 ```
-  Producer: Accounting
-  Consumers: None
+task_id: string
+price_withdraw: string
+price_deposit: string
+```
+
+```
+Producer: Accounting
+Consumers: None
 ```
 
 - Accounting.ChangeAudited
 
 ```
-  Producer: Accounting
-  Consumers: None
+balance_id: string
+audit_log_entry_id: string
+```
+
+```
+Producer: Accounting
+Consumers: Accounting
 ```
 
 - Accounting.ResetAudited
 
 ```
-  Producer: Accounting
-  Consumers: None
+balance_id: string
+```
+
+```
+Producer: Accounting
+Consumers: None
 ```
