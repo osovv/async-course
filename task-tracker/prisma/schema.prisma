@@ -9,13 +9,24 @@ datasource db {
 
 model User {
   id       Int     @id @default(autoincrement())
-  publicId String  @unique @default(cuid())
-  email    String  @unique
+  publicId String  @unique
+  email    String
   password String
   username String
-  role     String  @default("employee")
-  active   Boolean @default(true)
+  role     String
+  active   Boolean
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime
+  updatedAt DateTime
+  Task      Task[]
+}
+
+model Task {
+  id          Int    @id @default(autoincrement())
+  publicId    String @unique @default(cuid())
+  title       String
+  description String
+  status      String // in-progress | done
+  assignee    User   @relation(fields: [userId], references: [publicId])
+  userId      String
 }
