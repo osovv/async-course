@@ -1,12 +1,11 @@
 {
-  "name": "rest-express",
+  "name": "auth",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "dev": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@fastify/auth": "4.3.0",
     "@prisma/client": "5.1.1",
     "bcrypt": "5.1.0",
     "fastify": "4.21.0",
