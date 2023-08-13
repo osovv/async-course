@@ -7,7 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "auth": "PORT=3000 ts-node ./auth/src/index.ts"
+    "auth": "PORT=3000 nodemon ./auth/src/index.ts",
+    "task-tracker": "PORT=3001 nodemon ./task-tracker/src/index.ts"
   },
   "repository": {
     "type": "git",
