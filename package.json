@@ -1,0 +1,24 @@
+{
+  "name": "async-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "auth": "PORT=3000 nodemon ./auth/src/index.ts",
+    "task-tracker": "PORT=3001 nodemon ./task-tracker/src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osovv/async-course.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/osovv/async-course/issues"
+  },
+  "homepage": "https://github.com/osovv/async-course#readme"
+}
